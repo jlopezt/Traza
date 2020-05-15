@@ -2,7 +2,7 @@
 #define TRAZA
 
 #define MAX_CLIENTES_DEBUG 1
-#define PUERTO_DEBUG       80
+#define PUERTO_DEBUG       8000
 #define MAX_NIVELDEBUG     256
 #define BUFFER             16 
 
@@ -15,7 +15,7 @@ typedef enum {
 #include <stdarg.h>
 #include <WiFi.h>
 
-class Traza
+class TrazaClass
   {
   private:
     WiFiServer _servidor;
@@ -26,11 +26,10 @@ class Traza
     void escribeTCP(String mensaje);
     
   public:
-    Traza(uint8_t nivel=MAX_NIVELDEBUG, medios_t medio=serie): _servidor(PUERTO_DEBUG, MAX_CLIENTES_DEBUG) {}
+    TrazaClass(uint8_t nivel=MAX_NIVELDEBUG, medios_t medio=serie): _servidor(PUERTO_DEBUG, MAX_CLIENTES_DEBUG) {}
 
     void begin(uint8_t nivel, medios_t medio);
     
-//    int printf(char *str, ...);
     void mensaje(char *str, ...);
 
     uint8_t getNivelDebug(void) {return _nivelDebug;}
@@ -39,5 +38,5 @@ class Traza
     uint8_t setMedio(medios_t medio) {_medio=medio;}
   };
 
-extern Traza traza;
+extern TrazaClass Traza;
 #endif

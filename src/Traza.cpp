@@ -1,8 +1,8 @@
 #include "Traza.h"
 
-Traza traza;
+TrazaClass Traza;
 
-void Traza::mensaje(char *str, ...)
+void TrazaClass::mensaje(char *str, ...)
 {
   int count=0;  
   String cad="";
@@ -61,15 +61,14 @@ void Traza::mensaje(char *str, ...)
     }
 }
 
-void Traza::escribeTCP(String mensaje)
+void TrazaClass::escribeTCP(String mensaje)
   {
   if(!_cliente.connected()) _cliente = _servidor.available(); 
   
-  if (_cliente) _cliente.print(mensaje.c_str());  //"Hola mundo...\n");
-  else Serial.println(".");
+  if (_cliente) _cliente.print(mensaje.c_str());
   }
 
-void Traza::begin(uint8_t nivel=MAX_NIVELDEBUG, medios_t medio=serie)
+void TrazaClass::begin(uint8_t nivel=MAX_NIVELDEBUG, medios_t medio=serie)
   {
   _nivelDebug=nivel;
   _medio=medio;

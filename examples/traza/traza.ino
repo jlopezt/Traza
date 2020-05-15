@@ -22,8 +22,8 @@ void setup(void)
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());  
 
-  traza.begin(12,serie);
-  Serial.printf("Traza iniciada con nivel %i y salida %i\n",traza.getNivelDebug(),traza.getMedio());
+  Traza.begin(12,serie);
+  Serial.printf("Traza iniciada con nivel %i y salida %i\n",Traza.getNivelDebug(),Traza.getMedio());
   }
 
 void loop(void)
@@ -31,6 +31,6 @@ void loop(void)
   char nombre[]="Carmela";
   
   //Serial.printf("Hola %s, llevamos ---->%0.2i milisegundos\n", nombre, millis());
-  traza.mensaje("vuelta %i | hola, escribiendo en IP %s, puerto %i\n", vuelta++, WiFi.localIP().toString().c_str(), PUERTO_DEBUG);
+  Traza.mensaje("vuelta %i | hola, escribiendo en IP %s, puerto %i\n", vuelta++, WiFi.localIP().toString().c_str(), PUERTO_DEBUG);
   delay(100);
   }
