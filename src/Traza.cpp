@@ -1,16 +1,18 @@
 #include "Traza.h"
 
+Traza traza;
+
 void Traza::mensaje(char *str, ...)
 {
   int count=0;  
   String cad="";
   
-  for(int i=0; str[i]!='\0';i++)  if(str[i]=='%')  count++; //Evaluate number of arguments required to be printed
+  for(int i=0; str[i]!='\0';i++)  if(str[i]=='%')  count++;
   
   va_list argv;
   va_start(argv, count);
   
-  for(int i=0; str[i]!='\0';i++) //Iterate over formatting string
+  for(int i=0; str[i]!='\0';i++)
     {
     if(str[i]=='%')
       {    
@@ -75,59 +77,3 @@ void Traza::begin(uint8_t nivel=MAX_NIVELDEBUG, medios_t medio=serie)
   _servidor.begin();
   }
 
-/*
-int Traza::printf(char *str, ...)
-{
-  int i, count=0, j=0;
-  char temp[BUFFER+1];
-
-  for(i=0; str[i]!='\0';i++)  if(str[i]=='%')  count++; //Evaluate number of arguments required to be printed
-  
-  va_list argv;
-  va_start(argv, count);
-  for(i=0,j=0; str[i]!='\0';i++) //Iterate over formatting string
-  {
-    if(str[i]=='%')
-    {
-      //Clear buffer
-      temp[j] = '\0'; 
-      Serial.print(temp);
-      j=0;
-      temp[0] = '\0';
-      
-      //Process argument
-      switch(str[++i])
-      {
-        case 'i':
-        case 'd': Serial.print(va_arg(argv, int));
-                  break;
-        case 'l': Serial.print(va_arg(argv, long));
-                  break;
-        case 'f': Serial.print(va_arg(argv, double));
-                  break;
-        case 'c': Serial.print((char)va_arg(argv, int));
-                  break;
-        case 's': Serial.print(va_arg(argv, char *));
-                  break;
-        default:  ;
-      }
-    }
-    else 
-    {
-      //Add to buffer
-      temp[j] = str[i];
-      j = (j+1)%BUFFER;
-      if(j==0)  //If buffer is full, empty buffer.
-      {
-        temp[BUFFER] = '\0';
-        Serial.print(temp);
-        temp[0]='\0';
-      }
-    }
-  }
-
-  temp[j] = '\0';
-  Serial.println(temp); //Print trailing newline
-  return count + 1; //Return number of arguments detected
-}
-*/  

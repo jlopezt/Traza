@@ -39,5 +39,5 @@ class Traza
     uint8_t setMedio(medios_t medio) {_medio=medio;}
   };
 
-Traza traza;
+extern Traza traza;
 #endif
